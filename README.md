@@ -8,13 +8,13 @@ The structure for how songs are displayed is similar to that of old osu! profile
 
 **NOTE:** There is a strict dependency on [mcosu-stats-parser](https://github.com/neronerobi343/mcosu-stats-parser) as I use the JSON data to dynamically create all the elements using JS.
 
-1. Run the `mcocu-stats-parser` on `scores.db` from your McOsu installation to get the **playerStats.json** file with all of the necessary data.
-2. Download the **mcosu-widget.js** file (through `git clone` or downloading it directly).
-3. Place **mcosu-widget.js** and **playerStats.json** file somewhere inside your static site's directory.
-4. In **mcosu-widget.js**, make sure that `JSON_PATH` points to the path to **playerStats.json**
+1. Run mcocu-stats-parser on `scores.db` from your McOsu installation to get the `playerStats.json` file with all of the necessary data.
+2. Download the `mcosu-widget.js` file (through `git clone` or downloading it directly).
+3. Place `mcosu-widget.js` and `playerStats.json` file somewhere inside your static site's directory.
+4. In `mcosu-widget.js`, make sure that `JSON_PATH` points to the path to `playerStats.json`
 
     ```JS
-    const JSON_PATH = "./playerStats.json" // in same directory as mcosu-widget.js
+    const JSON_PATH = "./playerStats.json" // is set to be in same directory as mcosu-widget.js
     ```
 5. (Optional) You can add a profile image by adding a path to `PROFILE_IMAGE_PATH`. If left as an empty string (`""`), it will create the player stats without the image in mind.
 
@@ -22,12 +22,14 @@ The structure for how songs are displayed is similar to that of old osu! profile
     const PROFILE_IMG_PATH = "./profile.png"
     ```
 
-6. In an HTML file, add:
+6. In an HTML file, add the div and script to body (or anywhere you want):
     ```HTML
     ...
     <body>
-       <div id="mcosu-widget"></div>
+        <!-- COPY THIS -->
+        <div id="mcosu-widget"></div>
         <script type="text/javascript" src="mcosu-widget.js"></script> 
+        <!-- -->
     </body>
     ...
     ```
