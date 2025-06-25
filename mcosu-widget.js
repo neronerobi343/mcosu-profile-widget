@@ -1,4 +1,4 @@
-const JSON_PATH = "./exampleStats.json"
+const JSON_PATH = "./playerStats.json"
 const PROFILE_IMG_PATH = "./profile.png"
 
 // ========== HELPER FUNCTIONS ==========
@@ -98,22 +98,26 @@ function timeAgo(dateString) {
 
 // ========== CREATE HTML NODES ==========
 function createStats(stats, widget) {
-    const playerStats = createElement("div", null, {class: "player"}, [
-                            createElement("img", null, {src: PROFILE_IMG_PATH}),
-                            createElement("div", null, {class: "stats"}, [
-                                createElement("div", stats.name, {class: "name"}),
-                                createElement("div", `Performance: ${Math.round(stats.pp)}pp`, {class: "pp"}),
-                                createElement("div", `Accuracy: ${(stats.accuracy * 100).toFixed(2)}%`, {class: "accuracy"}),
-                                createElement("div", `Total Score: ${(stats.totalScore).toLocaleString("en-US")}`, {class: "total-score"}),
-                                createElement("div", null, {class: "level-details"}, [
-                                    createElement("div", `Lv${stats.level}`, {class: "level"}),
-                                    createElement("div", null, {class: "level-bar"}, [
-                                        createElement("div", null, {class: "level-progress", style: `width: ${(stats.percentToNextLevel * 100).toFixed(2)}%`}),
-                                    ])
-                                ])
-                            ])
-                        ]);
-                        
+    const playerStats = createElement("div", null, {class: "player"})
+    if (PROFILE_IMG_PATH !== "") {
+        playerStats.append(createElement("img", null, {src: PROFILE_IMG_PATH}))
+    }
+
+    const statsNode = createElement("div", null, {class: "stats"}, [
+                    createElement("div", stats.name, {class: "name"}),
+                    createElement("div", `Performance: ${Math.round(stats.pp)}pp`, {class: "pp"}),
+                    createElement("div", `Accuracy: ${(stats.accuracy * 100).toFixed(2)}%`, {class: "accuracy"}),
+                    createElement("div", `Total Score: ${(stats.totalScore).toLocaleString("en-US")}`, {class: "total-score"}),
+                    createElement("div", null, {class: "level-details"}, [
+                        createElement("div", `Lv${stats.level}`, {class: "level"}),
+                        createElement("div", null, {class: "level-bar"}, [
+                            createElement("div", null, {class: "level-progress", style: `width: ${(stats.percentToNextLevel * 100).toFixed(2)}%`}),
+                        ])
+                    ])
+                ])
+
+    playerStats.append(statsNode);
+
     widget.append(playerStats);
 }
 
