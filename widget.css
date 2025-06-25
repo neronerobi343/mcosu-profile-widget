@@ -73,20 +73,20 @@
 }
 
 #mcosu-widget .score .beatmap-details .grade {
-    display: inline;
+    display: inline-block;
 }
 #mcosu-widget .score .beatmap-details .beatmap {
-    display: inline;
+    display: inline-block;
 }
 #mcosu-widget .score .beatmap-details .speed-multiplier {
-    display: inline;
+    display: inline-block;
 }
 #mcosu-widget .score .beatmap-details .mods {
-    display: inline;
+    display: inline-block;
     font-weight: bold;
 }
 #mcosu-widget .score .beatmap-details .accuracy {
-    display: inline;
+    display: inline-block;
 }
 #mcosu-widget .score .beatmap-details .date {
     display: block;

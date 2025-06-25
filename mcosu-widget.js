@@ -122,11 +122,12 @@ function createStats(stats, widget) {
 }
 
 function createScoreEntry(score, includeWeights) {
+    const modNode = createElement("div", createModsStr(score.mods), {class: "mods"})
     const beatmapDetails = createElement("div", null, {class: "beatmap-details"}, [
                                createElement("div", score.grade, {classes: ["grade", score.grade]}),
                                createElement("a", `${score.artist} - ${score.beatmapName} [${score.difficultyName}]`, {class: "beatmap", href: score.beatmapSetId !== "" ? `https://osu.ppy.sh/beatmapsets/${score.beatmapSetId}` : "#"}),
                                createElement("div", `x${(score.speedMultiplier).toFixed(2)}`, {class: "speed-multiplier"}),
-                               createElement("div", createModsStr(score.mods), {class: "mods"}),
+                               modNode,
                                createElement("div", `(${(score.accuracy).toFixed(2)}%)`, {class: "accuracy"}),
                                createElement("div", timeAgo(score.date), {class: "date", title: score.date}),
                            ])
@@ -134,6 +135,7 @@ function createScoreEntry(score, includeWeights) {
                           createElement("div", `${Math.round(score.rawPP)}pp`, {class: "raw"}),
                       ])
     if (includeWeights) ppDetails.append(createElement("div", `weighted ${Math.round(score.weight)}% (${Math.round(score.weightPP)}pp)`, {class: "weight-details"}));
+    if (score.mods.length === 0) modNode.remove();
 
     return createElement("div", null, {class: "score"}, [beatmapDetails, ppDetails]);
 }
