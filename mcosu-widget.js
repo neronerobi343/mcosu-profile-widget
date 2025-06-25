@@ -1,4 +1,5 @@
 const JSON_PATH = "./exampleStats.json"
+const PROFILE_IMG_PATH = "./profile.png"
 
 // ========== HELPER FUNCTIONS ==========
 function createElement(tag, content, attributes, children) {
@@ -10,6 +11,7 @@ function createElement(tag, content, attributes, children) {
     const src = attributes.src;
     const href = attributes.href;
     const title = attributes.title;
+    const style = attributes.style;
 
     if (classAttr) {
         ele.classList.add(classAttr);
@@ -19,6 +21,7 @@ function createElement(tag, content, attributes, children) {
 
     if (id) ele.classList.add(id);
     if (title) ele.title = title;
+    if (style) ele.style = style;
     
     if (tag === "img") {
         if (!src) throw new Error("createElement(): Source not given for img");
@@ -94,11 +97,23 @@ function timeAgo(dateString) {
 
 
 // ========== CREATE HTML NODES ==========
-function createStats(widget) {
-    const playerStats = createElement("div", null, {class: "player-stats"}, [
-
-    ]);
-    
+function createStats(stats, widget) {
+    const playerStats = createElement("div", null, {class: "player"}, [
+                            createElement("img", null, {src: PROFILE_IMG_PATH}),
+                            createElement("div", null, {class: "stats"}, [
+                                createElement("div", stats.name, {class: "name"}),
+                                createElement("div", `Performance: ${Math.round(stats.pp)}pp`, {class: "pp"}),
+                                createElement("div", `Accuracy: ${(stats.accuracy * 100).toFixed(2)}%`, {class: "accuracy"}),
+                                createElement("div", `Total Score: ${(stats.totalScore).toLocaleString("en-US")}`, {class: "total-score"}),
+                                createElement("div", null, {class: "level-details"}, [
+                                    createElement("div", `Lv${stats.level}`, {class: "level"}),
+                                    createElement("div", null, {class: "level-bar"}, [
+                                        createElement("div", null, {class: "level-progress", style: `width: ${(stats.percentToNextLevel * 100).toFixed(2)}%`}),
+                                    ])
+                                ])
+                            ])
+                        ]);
+                        
     widget.append(playerStats);
 }
 
@@ -134,7 +149,7 @@ async function createWidget() {
     const { playerStats, topScores, recentScores } = await r.json();
     const widget = document.querySelector("#mcosu-widget");
     
-    if (playerStats) createStats(widget);   
+    if (playerStats) createStats(playerStats, widget);   
     if (topScores) createScoreList(topScores, "top-scores", "Top Ranks", widget, true);
     if (recentScores) createScoreList(recentScores, "recent-scores", "Recent Plays", widget, false);
 }

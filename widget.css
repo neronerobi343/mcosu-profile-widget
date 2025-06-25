@@ -1,7 +1,65 @@
-#mcosu-widget {
-    width: 800px;
+/* ========== PLAYER STATS STYLING ========== */
+
+/* Mobile View */
+#mcosu-widget .player {
+   display: flex; 
+   flex-direction: column;
+   gap: 0.5rem;
+   width: 60%;
+   margin: auto;
 }
 
+#mcosu-widget .player img {
+    height: 100%;
+    object-fit: contain;
+    width: auto;
+}
+
+#mcosu-widget .player .stats {
+    flex: 1;
+}
+
+#mcosu-widget .player .stats .name {
+    font-size: 2rem;
+}
+
+#mcosu-widget .player .stats .level-details {
+    display: flex;
+    gap: 0.25rem;
+}
+
+/* .level-bar and .level-progress need to have explicit heights, else they will not appear. 
+ * Preferably, they'd also have the same height.
+*/
+#mcosu-widget .player .stats .level-details .level-bar {
+    background-color: grey;
+    width: 100%;
+    height: 5px;
+    margin: auto 0;
+}
+
+#mcosu-widget .player .stats .level-details .level-bar .level-progress {
+    background-color: blue;
+    height: 5px;
+}
+
+/* Tablet/Desktop View */
+@media screen and (min-width: 800px) {
+    #mcosu-widget .player {
+        flex-direction: row;
+        height: 108px; /* the exact height of .stats is necessary to prevent the profile img from being bigger than the stats (unless that's what you want) */
+        width: 50%;
+        gap: 0.5rem;
+        margin: 1rem;
+    }
+
+    #mcosu-widget .player .stats .level-details {
+        display: flex;
+        gap: 0.25rem;
+    }
+}
+
+/* ========== TOP/RECENT SCORES STYLING ========== */
 #mcosu-widget .score {
     display: flex;
     flex-direction: row;
