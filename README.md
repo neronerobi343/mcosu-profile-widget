@@ -1,6 +1,6 @@
 # McOsu Profile Widget
 
-This widget displays the player stats and optionally top/recent scores from the JSON resulting from [mcosu-stats-parser](https://github.com/neronerobi343/mcosu-stats-parser) in a static HTML website.
+This widget displays the player stats and optionally top/recent scores from the JSON resulting from [mcosu-stats-parser](https://github.com/neronerobi343/mcosu-stats-parser) in HTML.
 
 The structure for how songs are displayed is similar to that of old osu! profile pages (pre-2017).
 
