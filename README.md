@@ -12,21 +12,24 @@ The structure for how songs are displayed is similar to that of old osu! profile
 2. Download the **mcosu-widget.js** file (through `git clone` or downloading it directly).
 3. Place **mcosu-widget.js** and **playerStats.json** file somewhere inside your static site's directory.
 4. In **mcosu-widget.js**, make sure that `JSON_PATH` points to the path to **playerStats.json**
+
     ```JS
     const JSON_PATH = "./playerStats.json" // in same directory as mcosu-widget.js
     ```
 5. (Optional) You can add a profile image by adding a path to `PROFILE_IMAGE_PATH`. If left as an empty string (`""`), it will create the player stats without the image in mind.
+
     ```JS
     const PROFILE_IMG_PATH = "./profile.png"
     ```
+
 6. In an HTML file, add:
-```HTML
-...
-<body>
-   <div id="mcosu-widget"></div>
-    <script type="text/javascript" src="mcosu-widget.js"></script> 
-</body>
-```
+    ```HTML
+    ...
+    <body>
+       <div id="mcosu-widget"></div>
+        <script type="text/javascript" src="mcosu-widget.js"></script> 
+    </body>
+    ```
 
 From here, the widget will build the HTML dynamically from `playerStats.json` to display player stats and their top/recent scores if given. This allows for updating player stats without having to edit static HTML over and over.
 
