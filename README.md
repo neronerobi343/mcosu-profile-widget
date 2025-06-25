@@ -40,4 +40,4 @@ From here, the widget will build the HTML dynamically from `playerStats.json` to
 
 A sample site with the widget installed with proper styling can be found [here](https://neronerobi343.github.io/mcosu-profile-widget/).
 
-You can view **widget.css** to get started with styling the widget's HTML output.
+You can view `widget.css` to get started with styling the widget's HTML output.
