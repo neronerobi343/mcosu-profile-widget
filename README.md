@@ -29,12 +29,13 @@ The structure for how songs are displayed is similar to that of old osu! profile
        <div id="mcosu-widget"></div>
         <script type="text/javascript" src="mcosu-widget.js"></script> 
     </body>
+    ...
     ```
 
 From here, the widget will build the HTML dynamically from `playerStats.json` to display player stats and their top/recent scores if given. This allows for updating player stats without having to edit static HTML over and over.
 
 ## Sample
 
-A sample site with the widget installed with proper styling can be found [here]().
+A sample site with the widget installed with proper styling can be found [here](https://neronerobi343.github.io/mcosu-profile-widget/).
 
 You can view **widget.css** to get started with styling the widget's HTML output.
