@@ -11,7 +11,7 @@ The structure for how songs are displayed is similar to that of old osu! profile
 1. Run mcocu-stats-parser on `scores.db` from your McOsu installation to get the `playerStats.json` file with all of the necessary data.
 2. Download the `mcosu-widget.js` file (through `git clone` or downloading it directly).
 3. Place `mcosu-widget.js` and `playerStats.json` file somewhere inside your static site's directory.
-4. In `mcosu-widget.js`, make sure that `JSON_PATH` points to the path to `playerStats.json`
+4. In `mcosu-widget.js`, make sure that `JSON_PATH` points to the path to `playerStats.json` (relative to the `.html` file that you're planning to place the widget in)
 
     ```JS
     const JSON_PATH = "./playerStats.json" // is set to be in same directory as mcosu-widget.js
