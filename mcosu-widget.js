@@ -69,17 +69,20 @@ function timeAgo(dateString) {
     const minutes = Math.floor(diffMs / (1000 * 60));
     const hours = Math.floor(diffMs / (1000 * 60 * 60));
     const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-    const months = Math.floor(diffMs / (1000 * 60 * 60 * 24 * 30.44)); // Average month length
-    const years = Math.floor(diffMs / (1000 * 60 * 60 * 24 * 365.25)); // Leap year adjusted
+    const months = Math.floor(diffMs / (1000 * 60 * 60 * 24 * 30.44));
+    const years = Math.floor(diffMs / (1000 * 60 * 60 * 24 * 365.25));
 
-    const format = (value, unit) => `${value === 1 ? '1' : 'about ' + value} ${unit}${value === 1 ? '' : 's'} ago`;
+    const format = (value, unit, useAbout = false) => {
+        const base = `${value} ${unit}${value === 1 ? '' : 's'}`;
+        return `${useAbout ? 'about ' : ''}${base} ago`;
+    };
 
     if (seconds < 60) {
-        return format(seconds, 'second');
+        return format(seconds, 'second', true);
     } else if (minutes < 60) {
-        return format(minutes, 'minute');
+        return format(minutes, 'minute', true);
     } else if (hours < 48) {
-        return format(hours, 'hour');
+        return format(hours, 'hour', true);
     } else if (days < 31) {
         return format(days, 'day');
     } else if (months < 12) {
@@ -89,10 +92,14 @@ function timeAgo(dateString) {
     }
 }
 
+
 // ========== CREATE HTML NODES ==========
 function createStats(widget) {
-    // const stats = createElement("div")
-    // beatmapDetails.
+    const playerStats = createElement("div", null, {class: "player-stats"}, [
+
+    ]);
+    
+    widget.append(playerStats);
 }
 
 function createScoreEntry(score) {
