@@ -1,0 +1,51 @@
+#mcosu-widget {
+    width: 800px;
+}
+
+#mcosu-widget .score {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0.5rem;
+    border: 1px solid grey;
+}
+
+#mcosu-widget .score .beatmap-details > * {
+    margin: 0 0.25rem;
+}
+
+#mcosu-widget .score .beatmap-details .grade {
+    display: inline;
+}
+#mcosu-widget .score .beatmap-details .beatmap {
+    display: inline;
+}
+#mcosu-widget .score .beatmap-details .speed-multiplier {
+    display: inline;
+}
+#mcosu-widget .score .beatmap-details .mods {
+    display: inline;
+    font-weight: bold;
+}
+#mcosu-widget .score .beatmap-details .accuracy {
+    display: inline;
+}
+#mcosu-widget .score .beatmap-details .date {
+    display: block;
+    font-size: 0.75rem;
+}
+
+#mcosu-widget .score .pp-details {
+    text-align: right;
+    flex: 1 1 20%;
+}
+
+#mcosu-widget .score .pp-details .raw {
+    display: block;
+    font-weight: bold;
+}
+
+#mcosu-widget .score .pp-details .weight-details {
+    display: block;
+    font-size: 0.75rem;
+}

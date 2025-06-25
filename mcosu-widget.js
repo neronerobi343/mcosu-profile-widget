@@ -102,28 +102,28 @@ function createStats(widget) {
     widget.append(playerStats);
 }
 
-function createScoreEntry(score) {
-    return createElement("div", null, {class: "score"}, [
-                createElement("div", null, {class: "beatmap-details"}, [
-                    createElement("div", score.grade, {classes: ["grade", score.grade]}),
-                    createElement("a", `${score.artist} - ${score.beatmapName} [${score.difficultyName}]`, {class: "beatmap", href: score.beatmapSetId !== "" ? `https://osu.ppy.sh/beatmapsets/${score.beatmapSetId}` : "#"}),
-                    createElement("div", `x${score.speedMultiplier}`, {class: "speed-multiplier"}),
-                    createElement("div", createModsStr(score.mods), {class: "mods"}),
-                    createElement("div", `(${(score.accuracy).toFixed(2)}%)`, {class: "accuracy"}),
-                    createElement("div", timeAgo(score.date), {class: "date", title: score.date}),
-                ]),
-                createElement("div", null, {class: "pp-details"}, [
-                    createElement("div", `${Math.round(score.rawPP)}pp`, {class: "raw"}),
-                    createElement("div", `weighted ${Math.round(score.weight)}% (${Math.round(score.weightPP)}pp)`, {class: "weight-details"}),
-                ])
-            ]);
+function createScoreEntry(score, includeWeights) {
+    const beatmapDetails = createElement("div", null, {class: "beatmap-details"}, [
+                               createElement("div", score.grade, {classes: ["grade", score.grade]}),
+                               createElement("a", `${score.artist} - ${score.beatmapName} [${score.difficultyName}]`, {class: "beatmap", href: score.beatmapSetId !== "" ? `https://osu.ppy.sh/beatmapsets/${score.beatmapSetId}` : "#"}),
+                               createElement("div", `x${(score.speedMultiplier).toFixed(2)}`, {class: "speed-multiplier"}),
+                               createElement("div", createModsStr(score.mods), {class: "mods"}),
+                               createElement("div", `(${(score.accuracy).toFixed(2)}%)`, {class: "accuracy"}),
+                               createElement("div", timeAgo(score.date), {class: "date", title: score.date}),
+                           ])
+    const ppDetails = createElement("div", null, {class: "pp-details"}, [
+                          createElement("div", `${Math.round(score.rawPP)}pp`, {class: "raw"}),
+                      ])
+    if (includeWeights) ppDetails.append(createElement("div", `weighted ${Math.round(score.weight)}% (${Math.round(score.weightPP)}pp)`, {class: "weight-details"}));
+
+    return createElement("div", null, {class: "score"}, [beatmapDetails, ppDetails]);
 }
 
-function createScoreList(scores, scoreType, headingStr, widget) {
+function createScoreList(scores, scoreType, headingStr, widget, includeWeights) {
     const scoreList = createElement("section", null, {class: scoreType});
     scoreList.append(createElement("h2", headingStr, {}));
     for (let i = 0; i < scores.length; i++) {
-        scoreList.append(createScoreEntry(scores[i]));
+        scoreList.append(createScoreEntry(scores[i], includeWeights));
     }
 
     widget.append(scoreList);
@@ -135,8 +135,8 @@ async function createWidget() {
     const widget = document.querySelector("#mcosu-widget");
     
     if (playerStats) createStats(widget);   
-    if (topScores) createScoreList(topScores, "top-scores", "Top Ranks", widget);
-    if (recentScores) createScoreList(recentScores, "recent-scores", "Recent Plays", widget);
+    if (topScores) createScoreList(topScores, "top-scores", "Top Ranks", widget, true);
+    if (recentScores) createScoreList(recentScores, "recent-scores", "Recent Plays", widget, false);
 }
 
 createWidget();
