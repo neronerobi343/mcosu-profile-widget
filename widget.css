@@ -76,7 +76,7 @@
     display: inline-block;
 }
 #mcosu-widget .score .beatmap-details .beatmap {
-    display: inline-block;
+    display: inline;
 }
 #mcosu-widget .score .beatmap-details .speed-multiplier {
     display: inline-block;
